@@ -17,15 +17,17 @@ jobs:
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
 
-      - name: Install toolchain
+      - name: Install dependencies
         run: bun install
 
       - name: Store PR number
         run: echo ${{ github.event.number }} > pr-number.txt
 
       - name: Run Knip
-        run: yarn knip || yarn -s knip --reporter json > knip-results.json
+        run: bun run knip || bun run knip-ci > knip-results.json
 
       - name: Upload knip result
         if: failure()
@@ -35,3 +37,4 @@ jobs:
           path: |
             knip-results.json
             pr-number.txt
+

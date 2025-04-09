@@ -27,17 +27,17 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "20.10.0"
+      - name: Set up bun
+        uses: oven-sh/setup-bun@v2
 
       - uses: actions/checkout@master
         with:
           fetch-depth: 0
 
-      - uses: oven-sh/setup-bun@v2
-
       - name: Jest With Coverage
-        # we install with bun but test with Jest because bun doesn't support network mocking yet
-        run: bun install && bun run test
+        run: bun install --frozen-lockfile && bun run test
 
       - name: Add Jest Report to Summary
         if: always()
         run: echo "$(cat test-dashboard.md)" >> $GITHUB_STEP_SUMMARY
+
