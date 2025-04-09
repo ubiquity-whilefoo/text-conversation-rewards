@@ -5,12 +5,7 @@
     "**/*.json",
     "**/*.css",
     "node_modules",
-    "**/*.log",
-    "tests/**",
-    "dist/**",
-    "eslint.config.mjs",
-    "output.html",
-    "src/web/api/payload.ts"
+    "**/*.log"
   ],
   "useGitignore": true,
   "language": "en",
